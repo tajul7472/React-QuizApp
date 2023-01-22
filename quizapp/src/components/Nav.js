@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+
 import logo from "../assets/images/logo-bg.png";
 import classes from "../styles/Nav.module.css";
 import Account from "./Account";
@@ -8,10 +8,10 @@ const Nav = () => {
     <nav className={classes.nav}>
       <ul>
         <li>
-          <Link to="/" className={classes.brand}>
+          <a  className={classes.brand}>
             <img src={logo} alt="Learn with Sumit Logo" />
-            <h3>Learn with Sumit</h3>
-          </Link>
+            <h3>React Tutorial</h3>
+          </a>
         </li>
       </ul>
       <Account />
