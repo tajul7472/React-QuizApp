@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import Buttton from "./Buttton";
 import Form from "./Form";
 import TextInput from "./TextInput";
@@ -29,7 +30,7 @@ const LoginForm = () => {
     
 
     <div className="info">
-      Don't have an account? <a to="/signup">Signup</a> instead.
+      Don't have an account? <Link to="/signup">Signup</Link> instead.
     </div>
   </Form>
   )

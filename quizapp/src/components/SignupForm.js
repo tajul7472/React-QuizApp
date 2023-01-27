@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import Buttton from "./Buttton";
 import Checkbox from "./Checkbox";
 import Form from "./Form";
@@ -52,7 +53,7 @@ const SignupForm = () => {
    
 
     <div className="info">
-      Already have an account? <a to="/login">Login</a> instead.
+      Already have an account? <Link to="/login">Login</Link> instead.
     </div>
   </Form>
   )
