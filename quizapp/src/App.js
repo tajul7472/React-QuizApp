@@ -6,12 +6,14 @@ import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import Signup from "./components/pages/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import {AuthProvider} from "./Context/AuthContext"
 
 
 
 function App() {
   return (
     <Router>
+    <AuthProvider>
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home/> }/>
@@ -21,6 +23,7 @@ function App() {
           <Route exact path="/result" element={<Result/>} />
         </Routes>
       </Layout>
+      </AuthProvider>
     </Router>
   );
 }
