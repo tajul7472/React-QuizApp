@@ -1,38 +1,72 @@
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Buttton from "./Buttton";
 import Form from "./Form";
 import TextInput from "./TextInput";
+import { useAuth } from "../Context/AuthContext";
+import { useState } from "react";
 
 const LoginForm = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState();
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+
+
+    try {
+      setError("");
+      setLoading(true);
+      await login(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+      setError("Failed to login");
+    }
+  }
   return (
-    <Form style={{ height: "330px" }}>
-    <TextInput
-      type="text"
-      placeholder="Enter email"
-      icon="alternate_email"
-      required
-     
-    />
+    <Form style={{ height: "330px" }} onSubmit={handleSubmit}>
+      <TextInput
+        type="text"
+        placeholder="Enter email"
+        icon="alternate_email"
+        required
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
 
-    <TextInput
-      type="password"
-      placeholder="Enter password"
-      icon="lock"
-      required
-      
-    />
+      />
 
-   
-     <Buttton type="submit">
-     <span>Submit Now</span>
-     </Buttton>
-    
+      <TextInput
+        type="password"
+        placeholder="Enter password"
+        icon="lock"
+        required
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
 
-    <div className="info">
-      Don't have an account? <Link to="/signup">Signup</Link> instead.
-    </div>
-  </Form>
+      />
+
+
+      <Buttton disabled={loading} type="submit">
+        <span>Submit Now</span>
+      </Buttton>
+
+      {error && <p className="error">{error}</p>}
+
+
+      <div className="info">
+        Don't have an account? <Link to="/signup">Signup</Link> instead.
+      </div>
+    </Form>
   )
 }
 
