@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { get, getDatebase, orderByKey, query, ref } from "firebase/database"
+import { get, getDatabase, orderByKey, query, ref } from "firebase/database"
 
 const UseVideoList = () => {
     const [loading, setLoading] = useState(true)
@@ -8,7 +8,7 @@ const UseVideoList = () => {
 
     useEffect(() => {
         async function fetchVidoes() {
-            const db = getDatebase();
+            const db = getDatabase();
             const videosRef = ref(db, "vidoes")
             const videoQuery = query(
                 videosRef,
